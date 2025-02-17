@@ -12,22 +12,23 @@ import java.util.Objects;
 public class NotificationTask {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(name = "chat_id")
     private String chatId;
 
-    private String text;
+    private String notification;
 
-    @Column (name = "data_time")
+    @Column(name = "data_time")
     private LocalDateTime localDateTime;
 
     public NotificationTask() {
     }
 
-    public NotificationTask(String text, LocalDateTime localDateTime) {
-        this.text = text;
+    public NotificationTask(String chatId, String notification, LocalDateTime localDateTime) {
+        this.chatId = chatId;
+        this.notification = notification;
         this.localDateTime = localDateTime;
     }
 
@@ -47,12 +48,12 @@ public class NotificationTask {
         this.chatId = chatId;
     }
 
-    public String getText() {
-        return text;
+    public String getNotification() {
+        return notification;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setNotification(String notification) {
+        this.notification = notification;
     }
 
     public LocalDateTime getLocalDateTime() {
@@ -68,12 +69,12 @@ public class NotificationTask {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         NotificationTask that = (NotificationTask) o;
-        return id == that.id && Objects.equals(chatId, that.chatId) && Objects.equals(text, that.text) && Objects.equals(localDateTime, that.localDateTime);
+        return id == that.id && Objects.equals(chatId, that.chatId) && Objects.equals(notification, that.notification) && Objects.equals(localDateTime, that.localDateTime);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, chatId, text, localDateTime);
+        return Objects.hash(id, chatId, notification, localDateTime);
     }
 
     @Override
@@ -81,7 +82,7 @@ public class NotificationTask {
         return "NotificationTask{" +
                 "id=" + id +
                 ", chatId='" + chatId + '\'' +
-                ", text='" + text + '\'' +
+                ", notification='" + notification + '\'' +
                 ", localDateTime=" + localDateTime +
                 '}';
     }
