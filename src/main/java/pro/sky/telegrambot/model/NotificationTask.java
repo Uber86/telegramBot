@@ -18,6 +18,7 @@ public class NotificationTask {
     @Column(name = "chat_id")
     private String chatId;
 
+    @Column(name = "notification")
     private String notification;
 
     @Column(name = "data_time")
